@@ -1,0 +1,111 @@
+<!-- file: macula/static/page.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macula · $title</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%23f0b429'/><circle cx='16' cy='16' r='5' fill='%230d1117'/></svg>">
+<style>
+$css
+</style>
+</head>
+<body>
+<div class="shell">
+<div class="shell-inner">
+
+<header>
+  <div class="brand-block">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <h1 class="brand-name">MACULA<span class="dot"></span><span class="ver">v$version</span></h1>
+        <span class="brand-sub">file server</span>
+      </div>
+    </div>
+  </div>
+  <div class="header-actions">
+    $upload_button
+    $clipboard_dropdown
+    $source_dropdown
+    $handbook_dropdown
+    <a class="btn" href="$repo_url" target="_blank" rel="noopener"
+       title="Project home on GitHub">
+      $svg_github
+    </a>
+  </div>
+  $header_info
+</header>
+
+<div class="stats">
+  <span class="stat" title="$filters_hint">
+    <span class="k">Filter</span>
+    <span class="v">$filters</span>
+  </span>
+  <span class="stat" title="$depth_hint">
+    <span class="k">Depth</span>
+    <span class="v">$depth</span>
+  </span>
+  <span class="stat" title="$items_hint">
+    <span class="k">Items</span>
+    <span class="v">$items_label</span>
+  </span>
+  $mounts_stat
+  $upload_stat
+  $clipboard_stat
+  <span class="stat" title="Maximum size accepted for a single upload request">
+    <span class="k">Max upload</span>
+    <span class="v">$max_upload</span>
+  </span>
+</div>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <span class="icon-search">$svg_search</span>
+    <input type="search" id="search" placeholder="Search files and folders…"
+           autofocus autocomplete="off" spellcheck="false">
+    <span class="search-hint hidden" id="searchHint"></span>
+    <button class="regex-toggle" id="regexToggle" type="button"
+            title="Use regular expressions (Alt+R)">.*</button>
+  </div>
+  <div class="toolbar-group">
+    <button class="icon-btn" id="expandAll" type="button" title="Expand all">$svg_expand</button>
+    <button class="icon-btn" id="collapseAll" type="button" title="Collapse all">$svg_collapse</button>
+    <a class="icon-btn" href="/" title="Home">$svg_home</a>
+    $back_btn
+  </div>
+  <div class="toolbar-group">
+    <button class="icon-btn" id="refreshBtn" type="button" title="Refresh now">$svg_refresh</button>
+    <button class="icon-btn" id="autoRefresh" type="button" title="Auto-refresh">$svg_auto</button>
+    $export_dropdown
+  </div>
+</div>
+
+$breadcrumbs
+
+$dropzone
+
+<div class="tree-container">
+  <div class="tree" id="tree">
+$tree
+  </div>
+</div>
+
+</div><!-- /shell-inner -->
+
+<footer>
+  macula v$version<span class="dot"></span>zero-dependency file server<span class="dot"></span><a href="$repo_url" target="_blank" rel="noopener" style="color:inherit">project home</a>
+</footer>
+
+</div><!-- /shell -->
+
+<script>
+window.MACULA_UPLOAD_TARGET = $upload_target_js;
+window.MACULA_VERSION = "$version";
+window.MACULA_FINGERPRINT = $fingerprint_js;
+window.MACULA_STAT_URL = $stat_url_js;
+$js
+</script>
+</body>
+</html>

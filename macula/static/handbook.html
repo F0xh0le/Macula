@@ -1,0 +1,215 @@
+<!-- file: macula/static/handbook.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macula · $title</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%23f0b429'/><circle cx='16' cy='16' r='5' fill='%230d1117'/></svg>">
+<style>
+$css
+.readme-shell {
+  max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 3rem;
+}
+.readme-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+.readme-brand {
+  display: flex; align-items: center; gap: .7rem;
+  font-family: var(--font-mono); font-size: .85rem;
+  color: var(--text-muted); letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.readme-brand .brand-mark { width: 24px; height: 24px; flex: 0 0 24px; }
+.readme-brand .brand-mark::after { display: none; }
+.readme-brand .sep {
+  display: inline-block; width: 4px; height: 4px;
+  border-radius: 50%; background: var(--macula);
+  opacity: .7; margin: 0 .35rem; vertical-align: middle;
+}
+.readme-actions { display: flex; gap: .5rem; }
+.readme {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.25rem;
+  line-height: 1.7;
+  color: var(--text);
+  overflow-wrap: break-word;
+}
+.readme > :first-child { margin-top: 0; }
+.readme h1, .readme h2, .readme h3, .readme h4, .readme h5, .readme h6 {
+  color: var(--text-strong);
+  font-family: var(--font-ui);
+  line-height: 1.25;
+  margin: 1.75em 0 .6em;
+  scroll-margin-top: 1rem;
+}
+.readme h1 { font-size: 1.85rem; padding-bottom: .35rem; border-bottom: 1px solid var(--border-soft); }
+.readme h2 { font-size: 1.4rem; padding-bottom: .3rem; border-bottom: 1px solid var(--border-soft); }
+.readme h3 { font-size: 1.15rem; }
+.readme h4 { font-size: 1rem; }
+.readme p { margin: 0 0 1em; }
+.readme a { color: var(--primary); text-decoration: none; }
+.readme a:hover { text-decoration: underline; }
+.readme code {
+  font-family: var(--font-mono); font-size: .85em;
+  background: var(--bg-elev); color: var(--primary);
+  padding: 1px 5px; border-radius: 4px;
+  border: 1px solid var(--border-soft);
+}
+.readme pre {
+  background: var(--bg); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 1rem; margin: 0 0 1em;
+  overflow-x: auto; line-height: 1.5;
+}
+.readme pre code {
+  background: none; border: none; padding: 0;
+  color: var(--text); font-size: .85rem;
+}
+.readme ul, .readme ol { margin: 0 0 1em; padding-left: 1.75em; }
+.readme li { margin: .25em 0; }
+
+/* nested lists — tighter vertical rhythm so the TOC reads as a tree */
+.readme li > ul,
+.readme li > ol {
+  margin: .15em 0 .2em;
+  padding-left: 1.4em;
+}
+
+.readme blockquote {
+  margin: 0 0 1em; padding: .5em 1em;
+  border-left: 3px solid var(--macula);
+  background: var(--bg-elev); color: var(--text-muted);
+}
+.readme hr {
+  border: none; border-top: 1px solid var(--border-soft);
+  margin: 2em 0;
+}
+.readme strong { color: var(--text-strong); }
+.readme footer {
+  margin-top: 2em; color: var(--text-dim);
+}
+
+/* ---- tables ---- */
+.readme table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.25em;
+  font-size: .88rem;
+  font-family: var(--font-ui);
+  display: block;
+  overflow-x: auto;
+}
+.readme thead { display: table-header-group; }
+.readme tbody { display: table-row-group; }
+.readme tr { display: table-row; }
+.readme th, .readme td {
+  padding: .5em .75em;
+  border: 1px solid var(--border-soft);
+  text-align: left;
+  vertical-align: top;
+  display: table-cell;
+}
+.readme th {
+  background: var(--bg-elev);
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.readme tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,.015);
+}
+
+.readme :target {
+  color: var(--primary);
+}
+
+/* ---- back to top (sticky, bottom-left) ---- */
+.back-to-top {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: opacity .18s ease, transform .18s ease,
+              background .12s, color .12s, border-color .12s;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  line-height: 1;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--surface-3);
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+.back-to-top:active {
+  transform: translateY(0);
+}
+.back-to-top .icon { width: 18px; height: 18px; }
+</style>
+</head>
+<body>
+<div class="readme-shell">
+  <div class="readme-toolbar">
+    <div class="readme-brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <span>macula<span class="sep"></span>$title</span>
+    </div>
+    <div class="readme-actions">
+      <a class="btn btn-ghost" href="/">Back to files</a>
+      <a class="btn" href="$text_url">View raw</a>
+    </div>
+  </div>
+  <article class="readme">
+$body
+  </article>
+</div>
+
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</a>
+
+<script>
+(function () {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  function update() {
+    if (window.scrollY > 300) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

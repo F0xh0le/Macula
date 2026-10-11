@@ -1,0 +1,49 @@
+# file: .gitignore
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# --- Virtual Environments ---
+venv/
+.venv/
+env/
+ENV/
+.conda/
+
+# --- Packaging / Build ---
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# --- Testing and Coverage ---
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.cache
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Operating System ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Environment Variables and Secrets ---
+.env
+.env.*
+*.local
+
+# --- Logs ---
+*.log

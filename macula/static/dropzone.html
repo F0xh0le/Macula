@@ -1,0 +1,14 @@
+<!-- file: macula/static/dropzone.html -->
+
+<div class="dropzone hidden" id="dropzone">
+  <div class="dz-inner">
+    $svg_upload_big
+    <div class="dz-title">Drop files to upload</div>
+    <div class="dz-hint">
+      Destination on server: <code>$upload_path</code><br>
+      Max size: <code>$max_upload</code> · Endpoint: <code>$endpoint</code>
+    </div>
+    <input type="file" id="fileInput" multiple style="display:none">
+    <div class="upload-status" id="uploadStatus"></div>
+  </div>
+</div>
